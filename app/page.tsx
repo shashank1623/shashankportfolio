@@ -1,4 +1,3 @@
-import { MovingBorderDemo } from "@/components/MovingBorderDemo";
 import {Appbar} from "@/components/Appbar"
 import {Hero} from "@/components/Hero"
 import {About} from "@/components/About"

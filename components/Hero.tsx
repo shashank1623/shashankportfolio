@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { motion} from 'framer-motion'
 import { ChevronDown } from 'lucide-react';
 import React from "react"
 import { Button } from './ui/moving-border';
