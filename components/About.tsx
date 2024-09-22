@@ -1,6 +1,7 @@
 
 import React from "react"
 import Image from "next/image"
+import profilePic from "./assets/profile2.jpg"
 export function About() {
     return (
         <section id="about" className="py-20 bg-black">
@@ -21,7 +22,7 @@ export function About() {
                     <div className="md:w-1/2 flex justify-center">
                         <div className="relative w-64 h-64 rounded-3xl overflow-hidden">
                             <Image
-                                src="/placeholder.svg"
+                                src={profilePic}
                                 alt="Profile picture"
                                 layout="fill"
                                 objectFit="cover"
