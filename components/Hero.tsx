@@ -22,15 +22,15 @@ export function Hero() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-4xl md:text-6xl font-bold mb-4"
                 >
-                    Full-Stack Engineer
+                    Full-Stack Engineer That Loves
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-xl md:text-2xl mb-8"
+                    className="text-4xl md:text-4xl font-bold mb-8 text-purple-500"
                 >
-                    That Loves to Make Products Simple
+                    Making Products Simple and Scalable
                 </motion.p>
                 <Button borderRadius="1.8rem"
                     className='bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300'
