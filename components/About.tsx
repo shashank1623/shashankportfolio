@@ -13,10 +13,10 @@ export function About() {
                             I grew up in <span className="inline-flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold mr-2">Bihar </span>, now living in <span className="inline-flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold"> Dehradun</span>, and I&apos;ve been coding since 2020.
                         </p>
                         <p className="text-lg mb-4">
-                            Recently I created <span className="inline-flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold">🔄 Wizard.ai </span>, a tool that makes building personal pages as easy as using Notion, all by myself.
+                            Recently I created <span className="inline-flex items-center bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold">🔄 Wizard.ai </span>, an AI Saas that helps to transcribe and understand human speech for MOM .
                         </p>
                         <p className="text-lg mb-4">
-                            I love making complex applications simple and user-friendly. Check out my work at <a href="https://github.com/shashank1623" className="text-blue-400 hover:underline">shashank1623</a> or get in touch at <a href="mailto:shashankbhardwaj2030@gmail.com" className="text-blue-400 hover:underline">shashankbhardwaj2030@gmail.com</a> if you want a application that stands out.
+                            I love making complex applications simple and user-friendly. Check out my work at <a href="https://github.com/shashank1623" className="text-blue-400 hover:underline">github/shashank1623</a> or get in touch at <a href="mailto:shashankbhardwaj2030@gmail.com" className="text-blue-400 hover:underline">shashankbhardwaj2030@gmail.com</a> if you want a application that stands out.
                         </p>
                     </div>
                     <div className="md:w-1/2 flex justify-center">
