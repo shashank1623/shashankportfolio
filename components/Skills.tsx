@@ -57,11 +57,11 @@ export function Skills() {
                         title="UI Implementation"
                         description="I use Next.js with React and it echosystem to build User interfaces that users will love. My focus here to make the apps I create easy to use in any device."
                         icon={<Rocket className="w-6 h-6" />}
-                        technologies={['React', 'Next.js', 'Tailwind CSS']}
+                        technologies={['React', 'Next.js', 'Client/Server Components','TypeScript','Zustand']}
                         approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
                         projects={[
-                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
-                            { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                            { name: 'Misha Multispecialit Hospital Website', description: 'I implemented the UI for the whole application, making sure it is usable by everyone.' },
+                            { name: 'DocSync', description: 'Created an intuitive interface for Collbrating Document Editing in Real-Time that provide Seamless user experience for document Editing and Sharing.' }
                         ]}
                     />
                     <TechCard
@@ -71,7 +71,7 @@ export function Skills() {
                         technologies={['React', 'Next.js', 'Tailwind CSS']}
                         approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
                         projects={[
-                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
+                            { name: 'Wizard.ai', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
                             { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
                         ]}
                     />
@@ -84,6 +84,38 @@ export function Skills() {
                         projects={[
                             { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
                             { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                        ]}
+                    />
+                    <TechCard
+                        title="Security"
+                        description="With a strong knowledge of web apps security, I use modern frameworks and tools to create a robust system that resist attacks and keeps your user data secure."
+                        icon={<Rocket className="w-6 h-6" />}
+                        technologies={['React', 'Next.js', 'Tailwind CSS']}
+                        approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
+                        projects={[
+                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
+                            { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                        ]}
+                    />
+                    <TechCard
+                        title="Full Stack Integration"
+                        description="My expertise with modern frontend frameworks, serverless backend architecture, PostgreSQL and NoSQL databases, along with AWS and Docker, and advanced backend communication like Websockets and WebRTC allows me to build apps that are not just visually appealing but also fully functional from end to end."
+                        icon={<Rocket className="w-6 h-6" />}
+                        technologies={['React', 'Next.js', 'Tailwind CSS']}
+                        approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
+                        projects={[
+                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
+                            { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                        ]}
+                    />
+                    <TechCard
+                        title="SEO Optimization"
+                        description="I create SEO-friendly frontends by optmizing page structure , load times , and meta data , helping your website rank higher in search engine results."
+                        icon={<Rocket className="w-6 h-6" />}
+                        technologies={['Google SEO Tools', 'Next.js Built in SEO Optimization', 'Structurured Data',"Meta Tags" ,'Sitemap Generation','Robots.txt Configuration.']}
+                        approach="For a frontend engineer, having strong knowledge of technical SEO is very important. I ensure that applications are structured so search engines can easily understand and index the content, improving its visibility. By optimizing factors like site speed, metadata, and accessibility, I help ensure that the content not only ranks higher but also reaches the right audience effectively."
+                        projects={[
+                            { name: 'Misha Multispecialit Hospital Website', description: 'I optimized the public pages for SEO by improving performance, mobile optimization, and configuring meta tags, among other adjustments.' },
                         ]}
                     />
                 </motion.div>
