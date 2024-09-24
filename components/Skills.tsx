@@ -64,6 +64,28 @@ export function Skills() {
                             { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
                         ]}
                     />
+                    <TechCard
+                        title="Scalablity"
+                        description="I design systems with future growth in mind , ensuring that as your application sclaes , it remains responsive and reliable , no matter the user load."
+                        icon={<Rocket className="w-6 h-6" />}
+                        technologies={['React', 'Next.js', 'Tailwind CSS']}
+                        approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
+                        projects={[
+                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
+                            { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                        ]}
+                    />
+                    <TechCard
+                        title="Performance Optimization"
+                        description="My approach is to ensure that your website is optimized for speed and performance , so users can interact with your content wihtout delay or frustation."
+                        icon={<Rocket className="w-6 h-6" />}
+                        technologies={['React', 'Next.js', 'Tailwind CSS']}
+                        approach="I focus on creating seamless, user-centric designs that adapt to various devices and screen sizes. By leveraging the latest frontend technologies, I ensure that the UI not only looks great but also performs optimally."
+                        projects={[
+                            { name: 'E-commerce Platform', description: 'Implemented a responsive design that increased mobile conversions by 25%' },
+                            { name: 'SaaS Dashboard', description: 'Created an intuitive interface that reduced user onboarding time by 40%' }
+                        ]}
+                    />
                 </motion.div>
             </div>
         </div>
