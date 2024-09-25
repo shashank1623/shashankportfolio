@@ -38,7 +38,7 @@ export function Skills() {
 
     return (
         <section id="skills" className="py-20 bg-black">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 pt-20">
             <h2 className="text-4xl font-bold mb-16 text-center">
                 The <span className="text-purple-500">Tech</span> Behind My <span className="text-blue-500">Creations</span>
             </h2>
