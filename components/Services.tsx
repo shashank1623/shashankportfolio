@@ -45,7 +45,7 @@ export default function Service() {
                         </p>
 
                         {/* Use the BookACall component here */}
-                        <BookACall />
+                        <BookACall title="Let's talk AI - Book A Call"/>
                     </div>
 
                     <div className="hidden lg:block lg:w-1/2">
