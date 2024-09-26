@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bot, Flame, ArrowRight, Loader2, X } from "lucide-react";
+import { Bot, Flame } from "lucide-react";
+import BookACall from "@/components/BookACall"; // Import the new component
 
 export default function Service() {
     const [chatMessages] = useState([
@@ -14,18 +15,6 @@ export default function Service() {
         { role: 'user', content: 'Sure, here is my email: john_03@gmail.com' },
         { role: 'bot', content: `Perfect. I'll be in touch soon to discuss the next steps. Have a great day!` },
     ]);
-
-    const [showBooking, setShowBooking] = useState(false); // Show or hide booking iframe
-    const [loading, setLoading] = useState(true); // Loading state for iframe
-
-    const openBooking = () => {
-        setShowBooking(true);
-        setLoading(true);
-    };
-
-    const closeBooking = () => {
-        setShowBooking(false);
-    };
 
     return (
         <section className="py-20 bg-black text-white relative">
@@ -54,13 +43,9 @@ export default function Service() {
                             with less effort. This improved efficiency leads to<br />
                             better user experiences and higher satisfaction.
                         </p>
-                        <Button
-                            variant="outline"
-                            className="bg-black text-white rounded-xl text-md px-4 py-2"
-                            onClick={openBooking} // Open booking page on click
-                        >
-                            Let's talk AI-Book A Call
-                        </Button>
+
+                        {/* Use the BookACall component here */}
+                        <BookACall />
                     </div>
 
                     <div className="hidden lg:block lg:w-1/2">
@@ -91,37 +76,13 @@ export default function Service() {
                                     disabled
                                 />
                                 <Button variant="ghost" className="text-purple-500 p-2">
-                                    <ArrowRight className="h-6 w-6" />
+                                    <Bot className="h-6 w-6" />
                                 </Button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {/* Overlay Booking Page */}
-            {showBooking && (
-                <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md flex items-center justify-center z-50">
-                    <div className="relative w-full h-full max-w-4xl">
-                        {loading && (
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Loader2 className="animate-spin text-white h-10 w-10" />
-                            </div>
-                        )}
-                        <iframe
-                            src="https://cal.com/theghost1623/book-a-call"
-                            className="w-full h-full border-0 rounded-lg"
-                            onLoad={() => setLoading(false)}
-                        />
-                        <button
-                            className="absolute top-4 right-4 text-white"
-                            onClick={closeBooking}
-                        >
-                            <X className="h-8 w-8" />
-                        </button>
-                    </div>
-                </div>
-            )}
         </section>
     );
 }
