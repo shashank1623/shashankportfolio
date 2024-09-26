@@ -10,9 +10,9 @@ export default function SkillsInterface() {
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-purple-500">
           Create Fast and Modern Web Interfaces
         </h2>
-        <div className="flex flex-col lg:flex-row items-center justify-between pt-10">
+        <div className="flex flex-col px-5 lg:flex-row items-left justify-between pt-10">
           {/* Image Section */}
-          <div className="lg:w-1/2 mb-8 lg:mb-0 flex justify-center lg:justify-start">
+          <div className="lg:w-1/2 mb-8 lg:mb-0 hidden lg:flex justify-center lg:justify-start">
             <div className="relative">
               <Image
                 src={Phone}
@@ -26,11 +26,11 @@ export default function SkillsInterface() {
 
           {/* Text Section */}
           <div className="lg:w-1/2 lg:pl-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <h6 className="text-6xl md:text-5xl mb-4">
               Want to Create a<br />
               <span className="text-purple-500">Fast and Easy to<br />
               Use</span> Website?
-            </h3>
+            </h6>
             <p className="text-gray-400 mb-8 text-lg leading-relaxed">
               Modern web technologies make your website faster<br />
               and more intuitive, allowing users to navigate easily<br />
