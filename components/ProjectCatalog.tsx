@@ -117,10 +117,10 @@ export default function ProjectCatalog() {
                 <div className="text-center">
                     <Button
                         variant="outline"
-                        className="bg-purple-500 text-white hover:bg-purple-600 text-lg px-6 py-3"
+                        className="bg-black text-white rounded-xl text-md px-4 py-2"
                         asChild
                     >
-                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/shashank1623?tab=repositories" target="_blank" rel="noopener noreferrer">
                             Show More on GitHub
                         </a>
                     </Button>
