@@ -5,7 +5,7 @@ import React from "react"
 import { Button } from './ui/moving-border';
 export function Hero() {
     return (
-        <section id="home" className="min-h-screen flex items-center justify-center relative">
+        <section id="home" className="min-h-screen pt-52 flex items-center justify-center relative">
             <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-[#2230c3] to-transparent"></div>
             <div className="text-center z-10">
                 <motion.p
