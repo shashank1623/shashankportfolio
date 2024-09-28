@@ -5,6 +5,7 @@ import { Footer} from "@/components/Footer"
 import { Skills } from "@/components/Skills"
 import Service from "@/components/Services"
 import SkillsInterface from "@/components/SkillsInterface"
+import ProjectCatalog from "@/components/ProjectCatalog"
 export default function Home() {
   return (
    <div className="text-white min-h-screen bg-black">
@@ -18,6 +19,8 @@ export default function Home() {
         <Service/>
 
         <SkillsInterface/>
+
+        <ProjectCatalog/>
 
       </main>
 
