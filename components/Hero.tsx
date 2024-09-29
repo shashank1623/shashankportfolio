@@ -1,9 +1,19 @@
 "use client";
-import { motion} from 'framer-motion'
+import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import React from "react"
+import React from "react";
 import { Button } from './ui/moving-border';
+import Link from 'next/link';
+
 export function Hero() {
+    const handleScroll = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const aboutSection = document.querySelector("#about");
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <section id="home" className="min-h-screen pt-52 flex items-center justify-center relative">
             <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-[#2230c3] to-transparent"></div>
@@ -32,8 +42,11 @@ export function Hero() {
                 >
                     Making Products Simple and Scalable
                 </motion.p>
-                <Button borderRadius="1.8rem"
+
+                <Button
+                    borderRadius="1.8rem"
                     className='bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300'
+                    onClick={handleScroll}
                 >
                     Get Started
                 </Button>
@@ -53,6 +66,5 @@ export function Hero() {
                 </motion.div>
             </div>
         </section>
-
-    )
+    );
 }
