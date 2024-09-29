@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import BookACall from './BookACall';
 export function Appbar() {
   const [activeSection, setActiveSection] = useState('home')
   const [navbarVisible, setNavbarVisible] = useState(true)
@@ -64,9 +65,11 @@ export function Appbar() {
                 </li>
               ))}
             </ul>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">
-              Let&apos;s Connect
-            </button>
+            <a href="mailto:shashankbardwaj2030@gmail.com">
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+                Let&apos;s Connect
+              </button>
+            </a>
           </div>
         </nav>
       </motion.header>
