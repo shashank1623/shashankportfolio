@@ -73,7 +73,7 @@ function ProjectCard({ title, description, imageUrl, tags, detailedDescription, 
 export default function ProjectCatalog() {
     const projects = [
         {
-            title: "Wiard.ai",
+            title: "Wizard.ai",
             description: "Your Ai Partner for transcribing and understanding human speech..",
             imageUrl: wizardAi,
             tags: ["AI", "LLM", "AI Saas", "Devops"],
