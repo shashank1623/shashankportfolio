@@ -105,8 +105,8 @@ export default function ProjectCatalog() {
             description: "Redesigned RetailReadyAI a YC backed startup their mission Revolutionize Your Warehouse Operations at Wrap Speed.",
             imageUrl: RetailReadyAI,
             tags: ["Nextjs", "React", "CI/CD"],
-            detailedDescription: "Developed an Responsive and Immersive UI using Shadcn , Nextjs .",
-            techStack: ["Nextjs", "React", "Tailwind", "AWS", "CI/CD", "Git" , "Framer-motion"],
+            detailedDescription: "Designed and developed a modern, responsive UI for RetailReady, featuring a clean layout with a focus on simplicity and user engagement.\n\nThe project involved:Using Next.js with TypeScript for building a dynamic and scalable front-end.Implementing Tailwind CSS for seamless responsive design and custom styling.Ensuring cross-browser compatibility and optimal performance on both desktop and mobile devices.Leveraging reusable components and maintaining design consistency across the platform.\n\nThis project highlights my ability to create visually appealing and user-friendly UI components that enhance user engagement and contribute to a cohesive brand experience.",
+            techStack: ["Nextjs", "React", "Tailwind CSS", "AWS", "CI/CD", "Git" , "Framer-motion"],
             websiteUrl: "https://retailreadyai.shashankbhardwaj.me/"
         }
     ]
