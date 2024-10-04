@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import wizardAi from "@/components/assets/WizardAI.png"
 import Docsync from "@/components/assets/DocSync.png"
 import flightStatus from "@/components/assets/IndigoFlight.png"
+import RetailReadyAI from "@/components/assets/RetailReadyAI.png"
 import { StaticImageData } from 'next/image'
 
 interface ProjectCardProps {
@@ -98,6 +99,15 @@ export default function ProjectCatalog() {
             detailedDescription: "Developed a web application using a microservices architecture that enables users to search for flights, view upcoming arrivals and departures, and receive real-time notifications on flight status.",
             techStack: ["React", "Flask", "MongoDB", "AWS", "Redis", "Git"],
             websiteUrl: "https://flight-status-system-u755.vercel.app/"
+        },
+        {
+            title: "RetailReadyAI",
+            description: "Redesigned RetailReadyAI a YC backed startup their mission Revolutionize Your Warehouse Operations at Wrap Speed.",
+            imageUrl: RetailReadyAI,
+            tags: ["Nextjs", "React", "CI/CD"],
+            detailedDescription: "Developed an Responsive and Immersive UI using Shadcn , Nextjs .",
+            techStack: ["Nextjs", "React", "Tailwind", "AWS", "CI/CD", "Git" , "Framer-motion"],
+            websiteUrl: "https://retailreadyai.shashankbhardwaj.me/"
         }
     ]
 
