@@ -97,7 +97,7 @@ export default function ProjectCatalog() {
             tags: ["React", "Flask", "Real Time"],
             detailedDescription: "Developed a web application using a microservices architecture that enables users to search for flights, view upcoming arrivals and departures, and receive real-time notifications on flight status.",
             techStack: ["React", "Flask", "MongoDB", "AWS", "Redis", "Git"],
-            websiteUrl: "https://fitness-app-demo.example.com"
+            websiteUrl: "https://flight-status-system-u755.vercel.app/"
         }
     ]
 
