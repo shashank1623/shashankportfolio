@@ -21,7 +21,7 @@ export default function BookACall({title}:any) {
         <>
             <Button
                 variant="outline"
-                className="bg-black text-white rounded-xl text-md px-4 py-2"
+                className="rounded-full border-border bg-surface px-5 py-2 text-sm font-medium text-ink hover:border-accent/40 hover:text-accent"
                 onClick={openBooking}
             >
                 {title}

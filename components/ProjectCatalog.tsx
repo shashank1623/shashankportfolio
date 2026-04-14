@@ -1,146 +1,215 @@
 "use client";
-import { useState } from 'react'
-import Image from 'next/image'
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import wizardAi from "@/components/assets/WizardAI.png"
-import Docsync from "@/components/assets/DocSync.png"
-import flightStatus from "@/components/assets/IndigoFlight.png"
-import RetailReadyAI from "@/components/assets/RetailReadyAI.png"
-import { StaticImageData } from 'next/image'
 
-interface ProjectCardProps {
-    title: string
-    description: string
-    imageUrl: string | StaticImageData
-    tags: string[]
-    detailedDescription: string
-    techStack: string[]
-    websiteUrl: string
+import { useRef } from "react";
+import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import type { PortfolioProject } from "@/lib/projects-data";
+import { PROJECTS } from "@/lib/projects-data";
+import { StaticImageData } from "next/image";
+import { prefersReducedMotion } from "@/lib/motion";
+
+function ProjectCard({
+  title,
+  description,
+  imageUrl,
+  tags,
+  detailedDescription,
+  techStack,
+  websiteUrl,
+  period,
+}: PortfolioProject) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <div
+          data-project-card
+          className="group mx-auto w-full max-w-md cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition-transform duration-300 hover:-translate-y-1 md:mx-0 md:w-[420px] md:max-w-none md:flex-shrink-0"
+        >
+          <div className="relative h-52 overflow-hidden">
+            <Image
+              src={imageUrl as StaticImageData | string}
+              alt={title}
+              fill
+              className="object-cover transition duration-500 group-hover:scale-[1.04]"
+              sizes="(max-width: 768px) 88vw, 420px"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-canvas/90 via-transparent to-transparent" />
+          </div>
+          <div className="space-y-3 p-6">
+            {period ? (
+              <p className="text-xs uppercase tracking-wider text-muted">{period}</p>
+            ) : null}
+            <h3 className="font-display text-xl font-semibold text-ink">{title}</h3>
+            <p className="text-sm leading-relaxed text-muted">{description}</p>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="rounded-full border border-border bg-elevated px-2.5 py-1 text-xs text-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </DialogTrigger>
+
+      <DialogContent className="max-h-[min(90dvh,900px)] w-[calc(100vw-1.5rem)] max-w-[600px] overflow-y-auto rounded-2xl border border-border bg-elevated p-6 text-ink sm:p-8">
+        <DialogHeader>
+          <DialogTitle className="font-display text-2xl font-semibold">{title}</DialogTitle>
+        </DialogHeader>
+        <div className="mt-6 space-y-6">
+          <div>
+            <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-accent">
+              Description
+            </h4>
+            <div className="space-y-4 text-sm leading-relaxed text-muted">
+              {detailedDescription.split("\n\n").map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h4 className="mb-2 text-sm font-semibold uppercase tracking-wider text-accent">
+              Tech stack
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {techStack.map((tech, index) => (
+                <span
+                  key={index}
+                  className="rounded-full border border-border px-3 py-1 text-xs text-muted"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <Button variant="outline" className="rounded-full border-accent/40 text-accent" asChild>
+            <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
+              See in action
+            </a>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }
-
-function ProjectCard({ title, description, imageUrl, tags, detailedDescription, techStack, websiteUrl }: ProjectCardProps) {
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105">
-                    <Image src={imageUrl} alt={title} width={400} height={200} className="w-full h-48 object-cover" />
-                    <div className="p-6">
-                        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                        <p className="text-gray-400 mb-4">{description}</p>
-                        <div className="flex flex-wrap gap-2">
-                            {tags.map((tag, index) => (
-                                <span key={index} className="bg-gray-700 text-sm text-gray-300 px-2 py-1 rounded">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </DialogTrigger>
-
-            <DialogContent className="sm:max-w-[600px] bg-gray-900 text-white p-8 rounded-lg">
-                <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold mb-4">{title}</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4">
-                    <h4 className="font-semibold text-lg mb-2">Description</h4>
-                    <div className="text-gray-300 mb-4 leading-relaxed space-y-4">
-                        {detailedDescription.split('\n\n').map((paragraph, index) => (
-                            <p key={index}>{paragraph}</p>
-                        ))}
-                    </div>
-
-                    <h4 className="font-semibold text-lg mb-2">Tech Stack:</h4>
-                    <div className="flex flex-wrap gap-2">
-                        {techStack.map((tech, index) => (
-                            <span key={index} className="bg-transparent border border-white text-white text-sm rounded-xl px-4 py-2">
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-
-                    <Button
-                        variant="outline"
-                        className="bg-black text-white rounded-xl text-md px-4 py-2"
-                        asChild
-                    >
-                        <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
-                            See in Action
-                        </a>
-                    </Button>
-                </div>
-            </DialogContent>
-        </Dialog>
-    )
-}
-
 
 export default function ProjectCatalog() {
-    const projects = [
-        {
-            title: "Wizard.ai",
-            description: "Your Ai Partner for transcribing and understanding human speech..",
-            imageUrl: wizardAi,
-            tags: ["AI", "LLM", "AI Saas", "Devops"],
-            detailedDescription: "Designed and Introduced a scalable web application for video summarization using Flask framework, which would transcribe and summarize the video.\n\nSpearheaded the fine-tuning of Facebook BART model for summarization, resulting in a 40% improvement in summarization quality and reducing the time spent on manual summarization by 50%.",
-            techStack: ["Python 3.8", "Large Language Models", "Facebook BARt", "CI/CD", "Open AI", "Whisper", "Git", "Flask", "Tailwind CSS", "JavaScript"],
-            websiteUrl: "https://github.com/shashank1623/wizard_ai"
-        },
-        {
-            title: "DocSync",
-            description: "Create, edit, and share documents seamlessly. Experience the future of collaborative document editing.",
-            imageUrl: Docsync,
-            tags: ["React", "Nodejs", "PostgreSQL"],
-            detailedDescription: "Developed a real-time collaborative document editing platform supporting simultaneous multi-user editing and real-time updates, achieving a 30% reduction in document editing latency.\n\nImplemented secure JWT-based authentication and utilized Node.js, Express.js, Prisma ORM, and PostgreSQL for backend services, handling up to 200 concurrent users efficiently.\n\n",
-            techStack: ["React", "Node.js", "Express", "MongoDB", "Zod", "Zustand", "WebSockets", "PostgreSQL"],
-            websiteUrl: "https://docsync.shashankbhardwaj.me/"
-        },
-        {
-            title: "Flight Status System",
-            description: "An application for tracking your flight details and status in real-time.",
-            imageUrl: flightStatus,
-            tags: ["React", "Flask", "Real Time"],
-            detailedDescription: "Developed a web application using a microservices architecture that enables users to search for flights, view upcoming arrivals and departures, and receive real-time notifications on flight status.\n\nIntegrated a notification system using Redis for real-time updates on gate numbers and baggage carousel information, improving user experience by 30%.",
-            techStack: ["React", "Flask", "MongoDB", "AWS", "Redis", "Git"],
-            websiteUrl: "https://flight-status-system-u755.vercel.app/"
-        },
-        {
-            title: "RetailReadyAI",
-            description: "Redesigned RetailReadyAI a YC backed startup their mission Revolutionize Your Warehouse Operations at Wrap Speed.",
-            imageUrl: RetailReadyAI,
-            tags: ["Nextjs", "React", "CI/CD"],
-            detailedDescription: "Designed and developed a modern, responsive UI for RetailReady, featuring a clean layout with a focus on simplicity and user engagement.\n\nThe project involved:Using Next.js with TypeScript for building a dynamic and scalable front-end.Implementing Tailwind CSS for seamless responsive design and custom styling.Ensuring cross-browser compatibility and optimal performance on both desktop and mobile devices.Leveraging reusable components and maintaining design consistency across the platform.\n\nThis project highlights my ability to create visually appealing and user-friendly UI components that enhance user engagement and contribute to a cohesive brand experience.",
-            techStack: ["Nextjs", "React", "Tailwind CSS", "AWS", "CI/CD", "Git", "Framer-motion"],
-            websiteUrl: "https://retailreadyai.shashankbhardwaj.me/"
-        }
-    ]
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
-    return (
-        <section className="py-20 bg-black text-white">
-            <div className="container mx-auto px-4">
-                <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-                    A Close Look at My <span className="text-purple-500">Creations</span>
-                </h2>
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      const track = trackRef.current;
+      const title = titleRef.current;
+      if (!section || !track || !title) return;
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {projects.map((project, index) => (
-                        <ProjectCard key={index} {...project} />
-                    ))}
-                </div>
+      if (prefersReducedMotion()) {
+        gsap.set(title, { opacity: 1, y: 0 });
+        gsap.set("[data-project-card]", { opacity: 1, x: 0 });
+        return;
+      }
 
-                <div className="text-center">
-                    <Button
-                        variant="outline"
-                        className="bg-black text-white rounded-xl text-md px-4 py-2"
-                        asChild
-                    >
-                        <a href="https://github.com/shashank1623?tab=repositories" target="_blank" rel="noopener noreferrer">
-                            Show More on GitHub
-                        </a>
-                    </Button>
-                </div>
-            </div>
-        </section>
-    )
+      gsap.from(title, {
+        opacity: 0,
+        y: 40,
+        duration: 0.85,
+        ease: "power3.out",
+        scrollTrigger: { trigger: title, start: "top 82%" },
+      });
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const getScroll = () => Math.max(track.scrollWidth - window.innerWidth + 120, 0);
+
+        gsap.to(track, {
+          x: () => -getScroll(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${getScroll() + window.innerHeight * 0.35}`,
+            scrub: true,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      mm.add("(max-width: 1023px)", () => {
+        gsap.from("[data-project-card]", {
+          opacity: 0,
+          y: 56,
+          duration: 0.75,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 72%",
+          },
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: sectionRef, dependencies: [] }
+  );
+
+  return (
+    <div className="bg-canvas">
+      <section
+        ref={sectionRef}
+        className="relative py-16 sm:py-24 md:flex md:min-h-screen md:flex-col md:justify-center md:py-16"
+      >
+        <div ref={titleRef} className="mx-auto w-full max-w-site px-4 pb-8 sm:px-8 sm:pb-10 md:pb-14 lg:px-12">
+          <p className="text-[0.65rem] uppercase tracking-[0.28em] text-muted sm:text-xs sm:tracking-[0.3em]">
+            Portfolio
+          </p>
+          <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
+            Projects
+          </h1>
+          <p className="mt-4 max-w-2xl text-muted">
+            Selected builds spanning AI SaaS, realtime collaboration, and production frontends.
+          </p>
+        </div>
+
+        <div className="md:pl-4 lg:pl-10">
+          <div
+            ref={trackRef}
+            className="flex flex-col gap-8 px-4 pb-8 sm:gap-10 sm:px-6 md:flex-row md:flex-nowrap md:gap-8 md:pb-0 md:pr-24 lg:pr-32"
+          >
+            {PROJECTS.map((project, index) => (
+              <ProjectCard key={index} {...project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto w-full max-w-site px-4 pb-16 pt-2 sm:px-8 sm:pb-20 lg:px-12">
+        <Button
+          variant="outline"
+          className="rounded-full border-border bg-surface text-ink hover:border-accent/40 hover:text-accent"
+          asChild
+        >
+          <a href="https://github.com/shashank1623?tab=repositories" target="_blank" rel="noopener noreferrer">
+            More on GitHub
+          </a>
+        </Button>
+      </div>
+    </div>
+  );
 }

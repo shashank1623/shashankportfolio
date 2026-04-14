@@ -1,8 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
-    --radius: 0.5rem
+    --radius: 0.5rem;
+    --bg: #070604;
+    --bg-elevated: #0f0d09;
+    --surface: #16130f;
+    --border: rgba(245, 200, 120, 0.12);
+    --text: #f4efe6;
+    --muted: #9c9488;
+    --accent: #e8a54b;
+    --accent-dim: #c4893a;
+    --glow: rgba(232, 165, 75, 0.35);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  ::selection {
+    background: rgba(232, 165, 75, 0.25);
+    color: var(--text);
+  }
+}
+
+@layer utilities {
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /**
+   * Section transitions: soft light falloff instead of a flat 1px rule.
+   * Children need a stacking context so content sits above the wash.
+   */
+  .section-flow {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .section-flow::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: min(28vh, 240px);
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 95% 120% at 50% 0%,
+      rgba(232, 165, 75, 0.11) 0%,
+      rgba(232, 165, 75, 0.04) 42%,
+      transparent 72%
+    );
+  }
+
+  .section-flow > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /** Optional: very subtle edge tint for footers / CTAs */
+  .section-flow-muted::before {
+    background: radial-gradient(
+      ellipse 90% 100% at 50% 0%,
+      rgba(244, 239, 230, 0.04) 0%,
+      transparent 65%
+    );
   }
 }

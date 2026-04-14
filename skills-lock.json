@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "gsap-framer-scroll-animation": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "092c73e6d948bb328c51bd1392ca7d7347bc63847e1cddf57eb8e3299be7aef6"
+    }
+  }
+}
