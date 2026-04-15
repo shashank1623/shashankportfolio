@@ -57,8 +57,12 @@ export default function Service() {
   );
 
   return (
-    <section ref={sectionRef} className="section-flow bg-canvas py-20 text-ink sm:py-28 md:py-32">
-      <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
+    <section
+      ref={sectionRef}
+      className="relative isolate overflow-hidden bg-canvas py-20 text-ink sm:py-28 md:py-32"
+    >
+      <div className="services-wash-bg pointer-events-none absolute inset-0 z-0" aria-hidden />
+      <div className="relative z-10 mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <p className="text-[0.65rem] uppercase tracking-[0.28em] text-muted sm:text-xs sm:tracking-[0.3em]">
             What I do

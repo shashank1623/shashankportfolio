@@ -85,4 +85,27 @@
       transparent 65%
     );
   }
+
+  /**
+   * Services: long falloff so the headline beam and the column layout
+   * share one continuous wash (avoids a hard band mid-section).
+   */
+  .services-wash-bg {
+    background:
+      radial-gradient(
+        ellipse 125% 95% at 50% -18%,
+        rgba(232, 165, 75, 0.14) 0%,
+        rgba(232, 165, 75, 0.065) 28%,
+        rgba(232, 165, 75, 0.028) 46%,
+        rgba(232, 165, 75, 0.01) 58%,
+        transparent 76%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(232, 165, 75, 0.045) 0%,
+        rgba(232, 165, 75, 0.018) 24%,
+        rgba(232, 165, 75, 0.006) 42%,
+        transparent 62%
+      );
+  }
 }
