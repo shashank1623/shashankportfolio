@@ -185,18 +185,50 @@ export function Skills() {
   useGSAP(
     () => {
       const heading = headingRef.current;
-      if (!heading) return;
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const stackItems = section.querySelectorAll<HTMLElement>(".skill-stack-item");
+      const railItems = section.querySelectorAll<HTMLElement>(".skill-rail-item");
+
       if (prefersReducedMotion()) {
-        gsap.set(heading, { opacity: 1, y: 0 });
+        if (heading) gsap.set(heading, { opacity: 1, y: 0 });
+        gsap.set(Array.from(stackItems).concat(Array.from(railItems)), { opacity: 1, y: 0 });
         return;
       }
-      gsap.from(heading, {
-        opacity: 0,
-        y: 40,
-        duration: 0.85,
-        ease: "power3.out",
-        scrollTrigger: { trigger: heading, start: "top 82%" },
-      });
+
+      if (heading) {
+        gsap.from(heading, {
+          opacity: 0,
+          y: 40,
+          duration: 0.85,
+          ease: "power3.out",
+          scrollTrigger: { trigger: heading, start: "top 82%" },
+        });
+      }
+
+      if (stackItems.length) {
+        gsap.from(stackItems, {
+          opacity: 0,
+          y: 52,
+          duration: 0.68,
+          stagger: 0.11,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 72%" },
+        });
+      }
+
+      const railTrigger = containerRef.current ?? section;
+      if (railItems.length) {
+        gsap.from(railItems, {
+          opacity: 0,
+          y: 32,
+          duration: 0.58,
+          stagger: { each: 0.06, from: "start" },
+          ease: "power3.out",
+          scrollTrigger: { trigger: railTrigger, start: "top 78%" },
+        });
+      }
     },
     { scope: sectionRef }
   );
@@ -256,7 +288,9 @@ export function Skills() {
 
         <div className="flex flex-col gap-6 md:hidden">
           {SKILL_ITEMS.map((item, index) => (
-            <TechCard key={`stack-${index}`} layout="stack" {...item} />
+            <div key={`stack-${index}`} className="skill-stack-item">
+              <TechCard layout="stack" {...item} />
+            </div>
           ))}
         </div>
 
@@ -268,7 +302,9 @@ export function Skills() {
         >
           <motion.div className="flex gap-5 lg:gap-6" style={{ x: scrollXValue }} animate={controls}>
             {SKILL_ITEMS.map((item, index) => (
-              <TechCard key={`rail-${index}`} layout="rail" {...item} />
+              <div key={`rail-${index}`} className="skill-rail-item shrink-0">
+                <TechCard layout="rail" {...item} />
+              </div>
             ))}
           </motion.div>
         </div>

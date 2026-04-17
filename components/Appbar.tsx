@@ -9,7 +9,6 @@ import BookACall from "./BookACall";
 
 const ROUTES = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
   { label: "Experience", href: "/experience" },
   { label: "Projects", href: "/projects" },
   { label: "Education", href: "/education" },

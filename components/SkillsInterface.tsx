@@ -51,6 +51,18 @@ export default function SkillsInterface() {
         ease: "power3.out",
         scrollTrigger: { trigger: copy, start: "top 76%" },
       });
+
+      gsap.to(visual, {
+        y: -28,
+        rotate: -1.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
     },
     { scope: sectionRef }
   );

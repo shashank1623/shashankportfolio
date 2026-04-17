@@ -52,6 +52,17 @@ export function About() {
         ease: "power3.out",
         scrollTrigger: { trigger: media, start: "top 78%" },
       });
+
+      gsap.to(media, {
+        y: -36,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
     },
     { scope: sectionRef }
   );

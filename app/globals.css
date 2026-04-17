@@ -37,75 +37,26 @@
     position: relative;
   }
 
+  /* Behind chrome + main/footer so noise is not composited over text (overlay crushed contrast). */
   .grain::before {
     content: "";
     pointer-events: none;
     position: fixed;
     inset: 0;
-    z-index: 1;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
+    z-index: 0;
+    opacity: 0.055;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /**
-   * Section transitions: soft light falloff instead of a flat 1px rule.
-   * Children need a stacking context so content sits above the wash.
-   */
-  .section-flow {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .section-flow::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: min(28vh, 240px);
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-      ellipse 95% 120% at 50% 0%,
-      rgba(232, 165, 75, 0.11) 0%,
-      rgba(232, 165, 75, 0.04) 42%,
-      transparent 72%
-    );
-  }
-
-  .section-flow > * {
+  .grain > main,
+  .grain > footer {
     position: relative;
     z-index: 1;
   }
 
-  /** Optional: very subtle edge tint for footers / CTAs */
-  .section-flow-muted::before {
-    background: radial-gradient(
-      ellipse 90% 100% at 50% 0%,
-      rgba(244, 239, 230, 0.04) 0%,
-      transparent 65%
-    );
-  }
-
-  /**
-   * Services: long falloff so the headline beam and the column layout
-   * share one continuous wash (avoids a hard band mid-section).
-   */
-  .services-wash-bg {
-    background:
-      radial-gradient(
-        ellipse 125% 95% at 50% -18%,
-        rgba(232, 165, 75, 0.14) 0%,
-        rgba(232, 165, 75, 0.065) 28%,
-        rgba(232, 165, 75, 0.028) 46%,
-        rgba(232, 165, 75, 0.01) 58%,
-        transparent 76%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(232, 165, 75, 0.045) 0%,
-        rgba(232, 165, 75, 0.018) 24%,
-        rgba(232, 165, 75, 0.006) 42%,
-        transparent 62%
-      );
+  /** Stacking for glows/decoration without changing the flat canvas tone */
+  .section-flow {
+    position: relative;
+    isolation: isolate;
   }
 }

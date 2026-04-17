@@ -36,7 +36,7 @@ export default function FooterTop() {
     <section
       ref={sectionRef}
       id="contact"
-      className="section-flow section-flow-muted bg-elevated py-20 text-ink sm:py-24 md:py-32"
+      className="section-flow bg-canvas py-20 text-ink sm:py-24 md:py-32"
     >
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={blockRef} className="text-center">
