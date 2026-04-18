@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { prefersReducedMotion } from "@/lib/motion";
 import {
   Dialog,
@@ -12,9 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Rocket, Scaling, Zap, Shield, Code } from "lucide-react";
+import { ChevronRight, Rocket, Scaling, Zap, Shield, Code } from "lucide-react";
 import { GiGrowth } from "react-icons/gi";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +50,7 @@ const SKILL_ITEMS: SkillItem[] = [
     ],
   },
   {
-    title: "Scalablity",
+    title: "Scalability",
     description:
       "I design systems with future growth in mind so your application stays responsive and reliable as load increases.",
     icon: <Scaling className="h-6 w-6 shrink-0 text-accent" />,
@@ -174,13 +172,63 @@ const SKILL_ITEMS: SkillItem[] = [
   },
 ];
 
+const BENTO_VARIANT: readonly ("hero" | "default")[] = [
+  "hero",
+  "default",
+  "default",
+  "default",
+  "default",
+  "default",
+];
+
+/** Cool neutral light + seamless SVG waves behind the bento (no warm tint). */
+function SkillsWaveBackdrop() {
+  const wavePath =
+    "M0,120 C200,80 400,160 600,120 C800,80 1000,160 1200,120 L1200,200 L0,200 Z";
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+      <div
+        className="absolute -left-[25%] -top-[35%] h-[95%] w-[85%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.085)_0%,rgba(210,225,255,0.04)_38%,transparent_65%)] opacity-80 motion-reduce:animate-none motion-reduce:opacity-40 motion-safe:animate-skills-light-drift"
+      />
+      <div
+        className="absolute -bottom-[45%] -right-[20%] h-[110%] w-[90%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(230,240,255,0.06)_0%,rgba(232,165,75,0.04)_35%,rgba(255,255,255,0.02)_48%,transparent_62%)] opacity-70 motion-reduce:animate-none motion-reduce:opacity-35 motion-safe:animate-skills-light-drift-reverse"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-[min(38vw,280px)] min-h-[160px] overflow-hidden opacity-[0.85] motion-reduce:opacity-30">
+        <div className="flex h-full w-[200%] will-change-transform motion-reduce:animate-none motion-safe:animate-skills-wave-scroll">
+          {[0, 1].map((key) => (
+            <svg
+              key={key}
+              className="h-full w-1/2 shrink-0 text-white/[0.14]"
+              viewBox="0 0 1200 200"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id={`skillsWaveFill-${key}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path d={wavePath} fill={`url(#skillsWaveFill-${key})`} />
+              <path
+                d="M0,108 C300,72 500,148 800,108 C950,88 1100,128 1200,108"
+                fill="none"
+                stroke="currentColor"
+                strokeOpacity={0.2}
+                strokeWidth={1.25}
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollXValue = useMotionValue(0);
-  const controls = useAnimation();
 
   useGSAP(
     () => {
@@ -188,12 +236,11 @@ export function Skills() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const stackItems = section.querySelectorAll<HTMLElement>(".skill-stack-item");
-      const railItems = section.querySelectorAll<HTMLElement>(".skill-rail-item");
+      const cells = section.querySelectorAll<HTMLElement>(".skill-bento-item");
 
       if (prefersReducedMotion()) {
         if (heading) gsap.set(heading, { opacity: 1, y: 0 });
-        gsap.set(Array.from(stackItems).concat(Array.from(railItems)), { opacity: 1, y: 0 });
+        gsap.set(Array.from(cells), { opacity: 1, y: 0 });
         return;
       }
 
@@ -207,106 +254,47 @@ export function Skills() {
         });
       }
 
-      if (stackItems.length) {
-        gsap.from(stackItems, {
+      if (cells.length) {
+        gsap.from(cells, {
           opacity: 0,
-          y: 52,
-          duration: 0.68,
-          stagger: 0.11,
+          y: 40,
+          duration: 0.65,
+          stagger: 0.08,
           ease: "power3.out",
           scrollTrigger: { trigger: section, start: "top 72%" },
-        });
-      }
-
-      const railTrigger = containerRef.current ?? section;
-      if (railItems.length) {
-        gsap.from(railItems, {
-          opacity: 0,
-          y: 32,
-          duration: 0.58,
-          stagger: { each: 0.06, from: "start" },
-          ease: "power3.out",
-          scrollTrigger: { trigger: railTrigger, start: "top 78%" },
         });
       }
     },
     { scope: sectionRef }
   );
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    let cancelled = false;
-
-    const run = async () => {
-      const el = containerRef.current;
-      if (!el || !mq.matches || cancelled) {
-        controls.stop();
-        return;
-      }
-      if (isHovered) {
-        controls.stop();
-        return;
-      }
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (maxScroll <= 0) return;
-
-      await controls.start({
-        x: [0, -maxScroll],
-        transition: {
-          duration: Math.max(16, maxScroll / 45),
-          ease: "linear",
-          repeat: Infinity,
-        },
-      });
-    };
-
-    void run();
-    mq.addEventListener("change", run);
-    const el = containerRef.current;
-    const ro = el ? new ResizeObserver(() => void run()) : null;
-    if (el) ro?.observe(el);
-
-    return () => {
-      cancelled = true;
-      mq.removeEventListener("change", run);
-      ro?.disconnect();
-      controls.stop();
-    };
-  }, [controls, isHovered]);
-
   return (
-    <section ref={sectionRef} id="skills" className="bg-canvas pb-20 pt-16 sm:pb-28 sm:pt-20 md:pb-32 md:pt-24">
-      <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="relative isolate overflow-hidden bg-canvas pb-20 pt-16 sm:pb-28 sm:pt-20 md:pb-32 md:pt-24"
+    >
+      <SkillsWaveBackdrop />
+      <div className="relative z-[1] mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={headingRef} className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
-          <p className="text-[0.65rem] uppercase tracking-[0.28em] text-muted sm:text-xs sm:tracking-[0.3em]">
+          <p className="font-display text-[0.65rem] uppercase leading-relaxed tracking-[0.22em] text-muted sm:text-xs sm:tracking-[0.28em]">
             Capabilities
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:mt-4 sm:text-4xl md:text-5xl">
+          <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.08] tracking-tight text-ink sm:mt-5 sm:text-4xl md:text-5xl">
             The stack behind the <span className="text-accent">shipping</span>
           </h2>
         </div>
 
-        <div className="flex flex-col gap-6 md:hidden">
+        <div className="skills-bento">
           {SKILL_ITEMS.map((item, index) => (
-            <div key={`stack-${index}`} className="skill-stack-item">
-              <TechCard layout="stack" {...item} />
+            <div
+              key={item.title}
+              className="skill-bento-item min-h-[200px] sm:min-h-[220px]"
+              data-bento={index}
+            >
+              <TechCard {...item} variant={BENTO_VARIANT[index]} />
             </div>
           ))}
-        </div>
-
-        <div
-          ref={containerRef}
-          className="hidden overflow-x-hidden md:block"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <motion.div className="flex gap-5 lg:gap-6" style={{ x: scrollXValue }} animate={controls}>
-            {SKILL_ITEMS.map((item, index) => (
-              <div key={`rail-${index}`} className="skill-rail-item shrink-0">
-                <TechCard layout="rail" {...item} />
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>
@@ -320,42 +308,87 @@ function TechCard({
   technologies,
   approach,
   projects,
-  layout,
-}: SkillItem & { layout: "stack" | "rail" }) {
-  const rail = layout === "rail";
+  variant,
+}: SkillItem & { variant: "hero" | "default" }) {
+  const hero = variant === "hero";
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card
+        <button
+          type="button"
+          aria-label={`Learn more: ${title}`}
           className={cn(
-            "flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-surface/95 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 hover:border-accent/30 hover:shadow-[0_24px_70px_rgba(0,0,0,0.45),0_0_0_1px_rgba(232,165,75,0.12)]",
-            rail
-              ? "h-[400px] w-[300px] flex-shrink-0 sm:h-[420px] sm:w-[320px] lg:w-[350px]"
-              : "min-h-0 w-full max-w-lg justify-self-center"
+            "group relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl text-left transition duration-300",
+            "border border-white/[0.14] ring-1 ring-inset ring-white/[0.05]",
+            "bg-[linear-gradient(158deg,rgba(255,247,235,0.1)_0%,rgba(255,255,255,0.04)_22%,rgba(22,19,15,0.55)_48%,rgba(7,6,4,0.72)_100%)]",
+            "backdrop-blur-[56px] backdrop-saturate-[1.12]",
+            "shadow-[0_10px_40px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.22)]",
+            "before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[radial-gradient(100%_85%_at_0%_-10%,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_32%,transparent_58%)]",
+            "hover:border-white/[0.2] hover:shadow-[0_14px_48px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.18)]",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           )}
         >
-          <CardContent className="flex flex-grow flex-col justify-between p-5 sm:p-6">
-            <div>
-              <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
+          <div
+            className={cn(
+              "flex flex-1 flex-col p-5 sm:p-6",
+              hero ? "lg:p-8 lg:pt-8" : "lg:p-6"
+            )}
+          >
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <div
+                  className="mb-3 h-px w-10 bg-gradient-to-r from-white/50 via-accent/25 to-transparent sm:mb-4 sm:w-12"
+                  aria-hidden
+                />
                 <h3
                   className={cn(
-                    "font-bold text-ink",
-                    rail ? "text-lg sm:text-xl lg:text-2xl" : "text-xl sm:text-2xl"
+                    "font-display font-semibold tracking-tight text-ink",
+                    hero && "text-xl sm:text-2xl lg:text-3xl",
+                    !hero && "text-lg sm:text-xl lg:text-2xl"
                   )}
                 >
                   {title}
                 </h3>
-                {icon}
               </div>
-              <p className="text-sm leading-relaxed text-muted sm:text-base">{description}</p>
+              <span
+                className={cn(
+                  "shrink-0 rounded-2xl border border-white/[0.12] bg-[linear-gradient(145deg,rgba(255,255,255,0.08)_0%,rgba(7,6,4,0.55)_100%)] p-2.5 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl backdrop-saturate-[1.1]",
+                  hero && "lg:p-3"
+                )}
+                aria-hidden
+              >
+                {icon}
+              </span>
             </div>
-          </CardContent>
-          <CardFooter className="px-5 pb-5 pt-0 sm:px-6 sm:pb-6">
-            <p className="cursor-pointer text-sm text-accent hover:underline">Tap to learn more</p>
-          </CardFooter>
-        </Card>
+
+            <p
+              className={cn(
+                "flex-1 text-sm leading-relaxed text-muted sm:text-base",
+                hero && "lg:text-lg lg:leading-relaxed"
+              )}
+            >
+              {description}
+            </p>
+
+            <div className="mt-6 flex items-center justify-between gap-3 pt-1 sm:mt-8">
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border border-white/[0.14] bg-[linear-gradient(165deg,rgba(255,247,235,0.12)_0%,rgba(15,13,9,0.65)_100%)] px-4 py-2.5 text-sm font-semibold text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_20px_rgba(0,0,0,0.2)] backdrop-blur-xl backdrop-saturate-[1.1] transition",
+                  "group-hover:border-white/[0.22] sm:px-5 sm:py-3 sm:text-base"
+                )}
+              >
+                Learn more
+                <ChevronRight className="h-4 w-4 text-accent transition group-hover:translate-x-0.5" aria-hidden />
+              </span>
+              <span className="hidden text-[0.65rem] uppercase tracking-[0.18em] text-muted sm:inline sm:tracking-[0.22em]">
+                Details
+              </span>
+            </div>
+          </div>
+        </button>
       </DialogTrigger>
-      <DialogContent className="max-h-[min(90dvh,880px)] w-[calc(100vw-1.5rem)] max-w-2xl overflow-y-auto border border-border bg-elevated p-6 text-ink sm:p-8">
+      <DialogContent className="max-h-[min(90dvh,880px)] w-[calc(100vw-1.5rem)] max-w-2xl overflow-y-auto rounded-3xl border border-white/[0.14] bg-[linear-gradient(165deg,rgba(255,247,235,0.08)_0%,rgba(22,19,15,0.75)_38%,rgba(7,6,4,0.88)_100%)] p-6 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_24px_80px_rgba(0,0,0,0.45)] ring-1 ring-inset ring-white/[0.05] backdrop-blur-[48px] backdrop-saturate-[1.12] sm:p-8">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-left text-xl font-bold text-ink sm:text-2xl">
             {icon}

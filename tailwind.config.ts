@@ -37,7 +37,26 @@ module.exports = {
   			muted: "var(--muted)",
   			accent: "var(--accent)",
   			"accent-dim": "var(--accent-dim)",
-  		}
+  		},
+  		keyframes: {
+  			"skills-light-drift": {
+  				"0%, 100%": { transform: "translate(0, 0) scale(1)" },
+  				"50%": { transform: "translate(6%, 5%) scale(1.06)" },
+  			},
+  			"skills-light-drift-reverse": {
+  				"0%, 100%": { transform: "translate(0, 0) scale(1)" },
+  				"50%": { transform: "translate(-8%, -4%) scale(1.05)" },
+  			},
+  			"skills-wave-scroll": {
+  				"0%": { transform: "translateX(0)" },
+  				"100%": { transform: "translateX(-50%)" },
+  			},
+  		},
+  		animation: {
+  			"skills-light-drift": "skills-light-drift 24s ease-in-out infinite",
+  			"skills-light-drift-reverse": "skills-light-drift-reverse 32s ease-in-out infinite",
+  			"skills-wave-scroll": "skills-wave-scroll 36s linear infinite",
+  		},
   	}
   },
   plugins: [addVariablesForColors, require("tailwindcss-animate")],
