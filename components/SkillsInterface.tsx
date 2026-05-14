@@ -4,9 +4,17 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Layers, Sparkles, Target, Zap } from "lucide-react";
 import Phone from "@/components/assets/phone.webp";
 import BookACall from "./BookACall";
 import { prefersReducedMotion } from "@/lib/motion";
+
+const featureItems = [
+  { icon: Zap, label: "Blazing Fast" },
+  { icon: Target, label: "Focused UX" },
+  { icon: Sparkles, label: "Modern Design" },
+  { icon: Layers, label: "Scalable" },
+] as const;
 
 export default function SkillsInterface() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -68,10 +76,13 @@ export default function SkillsInterface() {
   );
 
   return (
-    <section ref={sectionRef} className="section-flow bg-canvas py-20 text-ink sm:py-28 md:py-32">
+    <section
+      ref={sectionRef}
+      className="section-flow bg-canvas py-20 text-ink sm:py-28 md:py-32"
+    >
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
-        <div ref={titleRef} className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <p className="text-[0.65rem] uppercase tracking-[0.28em] text-muted sm:text-xs sm:tracking-[0.3em]">
+        <div ref={titleRef} className="mx-auto mb-12 max-w-3xl text-center sm:mb-16 md:mb-20">
+          <p className="text-[0.65rem] font-medium uppercase tracking-[0.32em] text-muted sm:text-xs sm:tracking-[0.35em]">
             Interfaces
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-accent sm:mt-4 sm:text-4xl md:text-5xl">
@@ -79,7 +90,7 @@ export default function SkillsInterface() {
           </h2>
         </div>
 
-        <div className="flex flex-col items-center gap-10 pt-2 sm:gap-14 sm:pt-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col items-center gap-12 pt-2 sm:gap-16 sm:pt-4 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
           <div ref={visualRef} className="hidden w-full justify-center lg:flex lg:w-1/2 lg:justify-start">
             <div className="relative max-w-md">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-accent/20 via-transparent to-transparent blur-3xl" />
@@ -93,20 +104,37 @@ export default function SkillsInterface() {
             </div>
           </div>
 
-          <div ref={copyRef} className="w-full max-w-xl space-y-8 lg:w-1/2 lg:pl-8">
-            <h3 className="font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
-              Want a site that feels{" "}
-              <span className="text-accent">
-                fast
-                <br />
-                and effortless?
-              </span>
+          <div
+            ref={copyRef}
+            className="w-full max-w-xl space-y-10 text-left sm:space-y-12 lg:w-1/2 lg:max-w-none lg:pl-4 xl:pl-10"
+          >
+            <h3 className="font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl md:text-5xl">
+              Want a site that feels <span className="text-accent">fast and effortless?</span>
             </h3>
-            <p className="text-lg leading-relaxed text-muted">
+            <p className="max-w-lg text-lg leading-relaxed text-muted">
               Performance, clarity, and motion where it matters — so visitors find what they need
               without friction.
             </p>
-            <BookACall title="Book a call" />
+
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 pt-2 sm:grid-cols-4 sm:gap-x-4 sm:gap-y-0">
+              {featureItems.map(({ icon: Icon, label }) => (
+                <div key={label} className="flex flex-col items-center text-center sm:px-1">
+                  <div
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-accent sm:h-16 sm:w-16"
+                    aria-hidden
+                  >
+                    <Icon className="h-6 w-6 text-accent sm:h-7 sm:w-7" strokeWidth={1.35} />
+                  </div>
+                  <p className="mt-3 text-xs font-medium leading-snug text-muted sm:text-[0.8125rem]">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2">
+              <BookACall title="Book a call" showArrow />
+            </div>
           </div>
         </div>
       </div>

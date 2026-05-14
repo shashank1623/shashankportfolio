@@ -1,10 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, X } from "lucide-react";
+import { ArrowUpRight, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export default function BookACall({title}:any) {
+export type BookACallProps = {
+  title: string;
+  className?: string;
+  showArrow?: boolean;
+};
+
+export default function BookACall({ title, className, showArrow }: BookACallProps) {
     const [showBooking, setShowBooking] = useState(false); // Show or hide booking iframe
     const [loading, setLoading] = useState(true); // Loading state for iframe
 
@@ -21,11 +28,14 @@ export default function BookACall({title}:any) {
         <>
             <Button
                 variant="outline"
-                className="rounded-full border-border bg-surface px-5 py-2 text-sm font-medium text-ink hover:border-accent/40 hover:text-accent"
+                className={cn(
+                    "inline-flex items-center gap-2 rounded-full border-border bg-surface px-5 py-2 text-sm font-medium text-ink hover:border-accent/40 hover:text-accent",
+                    className
+                )}
                 onClick={openBooking}
             >
                 {title}
-                
+                {showArrow ? <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden /> : null}
             </Button>
 
             {showBooking && (

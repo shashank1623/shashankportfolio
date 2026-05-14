@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/moving-border";
@@ -38,7 +39,7 @@ export function Hero() {
   };
 
   useGSAP(
-    () => {
+    (_ctx, contextSafe) => {
       const root = rootRef.current;
       if (!root) return;
 
@@ -58,6 +59,7 @@ export function Hero() {
         : [];
 
       if (reduce) {
+        root.removeAttribute("data-hero");
         gsap.set([q, h, tag, cta, scroll, line, orb, bg, decoGroup].filter(Boolean), {
           clearProps: "all",
           opacity: 1,
@@ -78,8 +80,31 @@ export function Hero() {
 
       prepStrokeDraw(decoPaths);
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(line, { scaleX: 0, duration: 0.9, transformOrigin: "left center" })
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        onComplete: contextSafe!(() => {
+          root.removeAttribute("data-hero");
+          gsap.fromTo(
+            [q, h, tag, cta],
+            { opacity: 1, y: 0 },
+            {
+              opacity: 0,
+              y: -48,
+              ease: "none",
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: root,
+                start: "center top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+          ScrollTrigger.refresh();
+        }),
+      });
+      tl.to(line, { scaleX: 1, duration: 0.9, transformOrigin: "left center" })
         .to(
           decoPaths,
           {
@@ -90,31 +115,11 @@ export function Hero() {
           },
           0.05
         )
-        .from(
-          q,
-          { opacity: 0, y: 28, duration: 0.7 },
-          "-=0.45"
-        )
-        .from(
-          h,
-          { opacity: 0, y: 40, duration: 0.85 },
-          "-=0.5"
-        )
-        .from(
-          tag,
-          { opacity: 0, y: 24, duration: 0.65 },
-          "-=0.55"
-        )
-        .from(
-          cta,
-          { opacity: 0, y: 20, duration: 0.55 },
-          "-=0.45"
-        )
-        .from(
-          scroll,
-          { opacity: 0, y: 16, duration: 0.5 },
-          "-=0.35"
-        );
+        .to(q, { opacity: 1, y: 0, duration: 0.7 }, "-=0.45")
+        .to(h, { opacity: 1, y: 0, duration: 0.85 }, "-=0.5")
+        .to(tag, { opacity: 1, y: 0, duration: 0.65 }, "-=0.55")
+        .to(cta, { opacity: 1, y: 0, duration: 0.55 }, "-=0.45")
+        .to(scroll, { opacity: 1, y: 0, duration: 0.5 }, "-=0.35");
 
       gsap.to(orb, {
         y: -80,
@@ -165,18 +170,6 @@ export function Hero() {
           scrub: true,
         },
       });
-
-      gsap.to([q, h, tag, cta], {
-        y: -48,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: root,
-          start: "center top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     },
     { scope: rootRef }
   );
@@ -185,6 +178,7 @@ export function Hero() {
     <section
       ref={rootRef}
       id="home"
+      data-hero="boot"
       className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-canvas pb-16 pt-28 sm:pb-20 sm:pt-32 md:min-h-[110vh] md:pt-36 lg:pt-40"
     >
       <div
@@ -257,33 +251,33 @@ export function Hero() {
 
       <div
         ref={lineRef}
-        className="pointer-events-none absolute left-8 top-28 hidden h-px w-32 bg-gradient-to-r from-accent/80 to-transparent md:block"
+        className="hero-intro-line pointer-events-none absolute left-8 top-28 hidden h-px w-32 bg-gradient-to-r from-accent/80 to-transparent md:block"
         aria-hidden
       />
 
       <div className="relative z-10 mx-auto w-full max-w-site px-4 text-center sm:px-8 lg:px-12">
         <p
           ref={qRef}
-          className="font-display text-[0.65rem] uppercase leading-relaxed tracking-[0.22em] text-muted sm:text-xs sm:tracking-[0.28em] md:text-base md:tracking-[0.35em]"
+          className="hero-intro-q font-display text-[0.65rem] uppercase leading-relaxed tracking-[0.22em] text-muted sm:text-xs sm:tracking-[0.28em] md:text-base md:tracking-[0.35em]"
         >
           Shashank Bhardwaj · Full-stack · AI systems
         </p>
         <h1
           ref={hRef}
-          className="font-display mt-5 text-[1.65rem] font-semibold leading-[1.08] tracking-tight text-ink sm:mt-6 sm:text-4xl md:text-6xl lg:text-7xl"
+          className="hero-intro-h font-display mt-5 text-[1.65rem] font-semibold leading-[1.08] tracking-tight text-ink sm:mt-6 sm:text-4xl md:text-6xl lg:text-7xl"
         >
           Code that ships.
           <span className="mt-2 block text-accent sm:mt-3">Products that stay simple.</span>
         </h1>
         <p
           ref={tagRef}
-          className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:mt-8 sm:text-lg md:text-xl"
+          className="hero-intro-tag mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:mt-8 sm:text-lg md:text-xl"
         >
           I build scalable web apps, AI-powered workflows, and interfaces people
           actually enjoy using.
         </p>
 
-        <div ref={ctaRef} className="mt-10 flex justify-center sm:mt-12">
+        <div ref={ctaRef} className="hero-intro-cta mt-10 flex justify-center sm:mt-12">
           <Button
             borderRadius="1.8rem"
             borderClassName="bg-[radial-gradient(var(--accent)_45%,transparent_60%)]"
@@ -294,7 +288,10 @@ export function Hero() {
           </Button>
         </div>
 
-        <div ref={scrollRef} className="mt-16 flex flex-col items-center gap-2 text-muted sm:mt-24">
+        <div
+          ref={scrollRef}
+          className="hero-intro-scroll mt-16 flex flex-col items-center gap-2 text-muted sm:mt-24"
+        >
           <span className="text-[0.65rem] uppercase tracking-[0.2em] sm:text-xs">Scroll</span>
           <ChevronDown className="h-8 w-8 text-accent/80 sm:h-10 sm:w-10" aria-hidden />
         </div>

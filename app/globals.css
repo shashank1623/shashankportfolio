@@ -26,6 +26,46 @@
     color: var(--text);
   }
 
+  /**
+   * Hero: avoid SSR/first-paint flash of full intro before client GSAP runs.
+   * Removed in JS when motion is skipped or intro timeline completes.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-hero="boot"] .hero-intro-line {
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    [data-hero="boot"] .hero-intro-q {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    [data-hero="boot"] .hero-intro-h {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    [data-hero="boot"] .hero-intro-tag {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    [data-hero="boot"] .hero-intro-cta {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    [data-hero="boot"] .hero-intro-scroll {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    [data-hero="boot"] .deco-path {
+      visibility: hidden;
+    }
+  }
+
   ::selection {
     background: rgba(232, 165, 75, 0.25);
     color: var(--text);
