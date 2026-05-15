@@ -5,9 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Layers, Sparkles, Target, Zap } from "lucide-react";
-import Phone from "@/components/assets/phone.webp";
+import interfaceVisual from "@/components/assets/icon3.png";
 import BookACall from "./BookACall";
 import { prefersReducedMotion } from "@/lib/motion";
+
+const INTERFACE_VISUAL_WIDTH = 1393;
+const INTERFACE_VISUAL_HEIGHT = 1129;
 
 const featureItems = [
   { icon: Zap, label: "Blazing Fast" },
@@ -91,15 +94,16 @@ export default function SkillsInterface() {
         </div>
 
         <div className="flex flex-col items-center gap-12 pt-2 sm:gap-16 sm:pt-4 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-          <div ref={visualRef} className="hidden w-full justify-center lg:flex lg:w-1/2 lg:justify-start">
-            <div className="relative max-w-md">
+          <div ref={visualRef} className="flex w-full justify-center lg:w-1/2 lg:justify-start">
+            <div className="relative w-full max-w-lg">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-accent/20 via-transparent to-transparent blur-3xl" />
               <Image
-                src={Phone}
-                alt="Stylized mobile device"
-                width={560}
-                height={840}
-                className="relative h-auto max-w-full drop-shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+                src={interfaceVisual}
+                alt="Layered glass interface panels with data visualization"
+                width={INTERFACE_VISUAL_WIDTH}
+                height={INTERFACE_VISUAL_HEIGHT}
+                className="relative h-auto w-full drop-shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+                sizes="(max-width: 1024px) 90vw, 560px"
               />
             </div>
           </div>

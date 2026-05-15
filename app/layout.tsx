@@ -3,6 +3,7 @@ import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import { GsapProvider } from "@/components/GsapProvider";
 import { getSiteUrl, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next"
 
 const display = Syne({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <Analytics />
       <body
         className={`${display.variable} ${sans.variable} min-h-dvh overflow-x-hidden bg-canvas font-sans text-ink antialiased`}
       >

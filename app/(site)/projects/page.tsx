@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return <ProjectCatalog />;
+  return <ProjectCatalog showViewAll={false} />;
 }

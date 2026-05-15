@@ -15,6 +15,7 @@ import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import Service from "@/components/Services";
 import SkillsInterface from "@/components/SkillsInterface";
+import ProjectCatalog from "@/components/ProjectCatalog";
 import { BlogPreview } from "@/components/blog/BlogPreview";
 import FooterTop from "@/components/FooterTop";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <Skills />
       <Service />
       <SkillsInterface />
+      <ProjectCatalog />
       <BlogPreview />
       <FooterTop />
     </>
