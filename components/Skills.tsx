@@ -181,51 +181,6 @@ const BENTO_VARIANT: readonly ("hero" | "default")[] = [
   "default",
 ];
 
-/** Cool neutral light + seamless SVG waves behind the bento (no warm tint). */
-function SkillsWaveBackdrop() {
-  const wavePath =
-    "M0,120 C200,80 400,160 600,120 C800,80 1000,160 1200,120 L1200,200 L0,200 Z";
-  return (
-    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-      <div
-        className="absolute -left-[25%] -top-[35%] h-[95%] w-[85%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.085)_0%,rgba(210,225,255,0.04)_38%,transparent_65%)] opacity-80 motion-reduce:animate-none motion-reduce:opacity-40 motion-safe:animate-skills-light-drift"
-      />
-      <div
-        className="absolute -bottom-[45%] -right-[20%] h-[110%] w-[90%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(230,240,255,0.06)_0%,rgba(232,165,75,0.04)_35%,rgba(255,255,255,0.02)_48%,transparent_62%)] opacity-70 motion-reduce:animate-none motion-reduce:opacity-35 motion-safe:animate-skills-light-drift-reverse"
-      />
-      <div className="absolute inset-x-0 bottom-0 h-[min(38vw,280px)] min-h-[160px] overflow-hidden opacity-[0.85] motion-reduce:opacity-30">
-        <div className="flex h-full w-[200%] will-change-transform motion-reduce:animate-none motion-safe:animate-skills-wave-scroll">
-          {[0, 1].map((key) => (
-            <svg
-              key={key}
-              className="h-full w-1/2 shrink-0 text-white/[0.14]"
-              viewBox="0 0 1200 200"
-              preserveAspectRatio="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id={`skillsWaveFill-${key}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d={wavePath} fill={`url(#skillsWaveFill-${key})`} />
-              <path
-                d="M0,108 C300,72 500,148 800,108 C950,88 1100,128 1200,108"
-                fill="none"
-                stroke="currentColor"
-                strokeOpacity={0.2}
-                strokeWidth={1.25}
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -272,12 +227,11 @@ export function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative isolate overflow-hidden bg-canvas pb-20 pt-16 sm:pb-28 sm:pt-20 md:pb-32 md:pt-24"
+      className="relative isolate overflow-hidden bg-canvas pb-20 pt-16 text-ink sm:pb-28 sm:pt-20 md:pb-32 md:pt-24"
     >
-      <SkillsWaveBackdrop />
       <div className="relative z-[1] mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={headingRef} className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
-          <p className="font-display text-[0.65rem] uppercase leading-relaxed tracking-[0.22em] text-muted sm:text-xs sm:tracking-[0.28em]">
+          <p className="text-[0.65rem] font-semibold uppercase leading-relaxed tracking-[0.32em] text-muted sm:text-xs sm:tracking-[0.35em]">
             Capabilities
           </p>
           <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.08] tracking-tight text-ink sm:mt-5 sm:text-4xl md:text-5xl">
@@ -319,19 +273,19 @@ function TechCard({
           type="button"
           aria-label={`Learn more: ${title}`}
           className={cn(
-            "group relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl text-left transition duration-300",
-            "border border-white/[0.14] ring-1 ring-inset ring-white/[0.05]",
-            "bg-[linear-gradient(158deg,rgba(255,247,235,0.1)_0%,rgba(255,255,255,0.04)_22%,rgba(22,19,15,0.55)_48%,rgba(7,6,4,0.72)_100%)]",
-            "backdrop-blur-[56px] backdrop-saturate-[1.12]",
-            "shadow-[0_10px_40px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_0_rgba(0,0,0,0.22)]",
-            "before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[radial-gradient(100%_85%_at_0%_-10%,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_32%,transparent_58%)]",
-            "hover:border-white/[0.2] hover:shadow-[0_14px_48px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.18)]",
+            "group relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-xl text-left transition duration-300",
+            "border border-white/10 bg-[#050505] shadow-[0_18px_60px_rgba(0,0,0,0.34)]",
+            "before:pointer-events-none before:absolute before:left-[7%] before:top-0 before:h-px before:w-[42%] before:bg-gradient-to-r before:from-transparent before:via-accent/75 before:to-transparent",
+            "after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.06)_0%,transparent_34%,rgba(232,165,75,0.035)_100%)] after:opacity-70",
+            "hover:-translate-y-1 hover:border-white/[0.18] hover:shadow-[0_24px_80px_rgba(0,0,0,0.42)]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           )}
         >
+          <div className="pointer-events-none absolute left-[8%] top-0 h-14 w-[34%] -translate-y-1/2 rounded-full bg-accent/12 blur-2xl" />
+          <div className="pointer-events-none absolute bottom-0 right-[8%] h-px w-[36%] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <div
             className={cn(
-              "flex flex-1 flex-col p-5 sm:p-6",
+              "relative z-10 flex flex-1 flex-col p-5 sm:p-6",
               hero ? "lg:p-8 lg:pt-8" : "lg:p-6"
             )}
           >
@@ -353,7 +307,7 @@ function TechCard({
               </div>
               <span
                 className={cn(
-                  "shrink-0 rounded-2xl border border-white/[0.12] bg-[linear-gradient(145deg,rgba(255,255,255,0.08)_0%,rgba(7,6,4,0.55)_100%)] p-2.5 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl backdrop-saturate-[1.1]",
+                  "shrink-0 rounded-xl border border-white/10 bg-white/[0.035] p-2.5 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]",
                   hero && "lg:p-3"
                 )}
                 aria-hidden
@@ -374,8 +328,8 @@ function TechCard({
             <div className="mt-6 flex items-center justify-between gap-3 pt-1 sm:mt-8">
               <span
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full border border-white/[0.14] bg-[linear-gradient(165deg,rgba(255,247,235,0.12)_0%,rgba(15,13,9,0.65)_100%)] px-4 py-2.5 text-sm font-semibold text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_4px_20px_rgba(0,0,0,0.2)] backdrop-blur-xl backdrop-saturate-[1.1] transition",
-                  "group-hover:border-white/[0.22] sm:px-5 sm:py-3 sm:text-base"
+                  "inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/20 px-4 py-2.5 text-sm font-semibold text-ink shadow-[0_0_24px_rgba(232,165,75,0.08)] transition",
+                  "group-hover:border-accent/45 group-hover:bg-accent/10 sm:px-5 sm:py-3 sm:text-base"
                 )}
               >
                 Learn more

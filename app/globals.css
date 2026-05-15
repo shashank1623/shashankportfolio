@@ -99,6 +99,7 @@
     position: relative;
     isolation: isolate;
   }
+
 }
 
 @layer components {
