@@ -110,6 +110,7 @@ export const CONTACT = {
   name: "Shashank Bhardwaj",
   phone: "+91 7017543269",
   email: "shashankbhardwaj16apr@gmail.com",
+  calBooking: "https://cal.com/theghost1623/book-a-call",
   github: "https://github.com/shashank1623",
   leetcode: "https://leetcode.com/u/theghost16/",
   linkedin: "https://www.linkedin.com/in/shashank-bhardwaj-1a92b9213/",

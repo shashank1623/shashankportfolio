@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import BookACall from "@/components/BookACall";
 import { Button } from "@/components/ui/button";
 import { prefersReducedMotion } from "@/lib/motion";
 
@@ -43,12 +44,19 @@ export default function FooterTop() {
           <blockquote className="font-display text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl md:text-4xl">
             Ideas are not built in a day — the journey starts the moment you ship the first slice.
           </blockquote>
-          <p className="mt-8 text-muted">Write me an email to get started.</p>
+          <p className="mt-8 text-muted">Book a call or drop me an email to get started.</p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 md:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
+            <BookACall
+              title="Book a call"
+              className="rounded-full border-accent/30 bg-accent px-8 py-6 text-base font-semibold text-canvas hover:border-accent hover:bg-accent-dim hover:text-canvas"
+            />
             <a href="mailto:shashankbhardwaj16apr@gmail.com">
-              <Button className="rounded-full bg-accent px-8 py-6 text-base font-semibold text-canvas hover:bg-accent-dim">
-                Get started
+              <Button
+                variant="outline"
+                className="rounded-full border-border bg-surface px-8 py-6 text-base font-semibold text-ink hover:border-accent/40 hover:text-accent"
+              >
+                Email me
                 <span className="ml-2" aria-hidden>
                   ✉️
                 </span>
