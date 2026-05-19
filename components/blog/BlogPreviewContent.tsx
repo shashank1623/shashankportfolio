@@ -53,7 +53,7 @@ export function BlogPreviewContent({ posts }: Props) {
   return (
     <section
       ref={sectionRef}
-      className="section-flow bg-canvas py-20 text-ink antialiased sm:py-28 md:py-32"
+      className="section-flow bg-black py-20 text-ink antialiased sm:py-28 md:py-32"
       aria-labelledby="blog-preview-heading"
     >
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
@@ -84,10 +84,12 @@ export function BlogPreviewContent({ posts }: Props) {
         <ul ref={listRef} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <li key={post.slug}>
-              <article className="flex h-full flex-col rounded-2xl border border-white/[0.1] bg-surface p-6 shadow-[0_16px_48px_rgba(0,0,0,0.25)] transition hover:border-accent/35 hover:shadow-[0_20px_56px_rgba(0,0,0,0.32)]">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.12] bg-white/[0.045] p-6 shadow-[0_0_70px_rgba(232,165,75,0.045),0_18px_58px_rgba(0,0,0,0.34)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:border-accent/35 hover:bg-white/[0.065] hover:shadow-[0_0_90px_rgba(232,165,75,0.09),0_24px_70px_rgba(0,0,0,0.42)]">
+                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(232,165,75,0.14),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.09),rgba(255,255,255,0.015)_45%,rgba(232,165,75,0.035))]" />
+                <span className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 <time
                   dateTime={post.datePublished}
-                  className="text-xs font-medium uppercase tracking-wider text-muted"
+                  className="relative text-xs font-medium uppercase tracking-wider text-white/45"
                 >
                   {new Date(post.datePublished).toLocaleDateString("en-IN", {
                     year: "numeric",
@@ -95,17 +97,17 @@ export function BlogPreviewContent({ posts }: Props) {
                     day: "numeric",
                   })}
                 </time>
-                <h3 className="mt-3 font-display text-lg font-semibold leading-snug text-ink">
+                <h3 className="relative mt-3 font-display text-lg font-semibold leading-snug text-ink">
                   <Link href={`/blog/${post.slug}`} className="text-ink transition hover:text-accent">
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-3 flex-grow text-sm leading-relaxed text-ink/80 sm:text-[0.9375rem]">
+                <p className="relative mt-3 flex-grow text-sm leading-relaxed text-white/60 sm:text-[0.9375rem]">
                   {post.description}
                 </p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="mt-5 inline-flex text-sm font-medium text-accent hover:underline"
+                  className="relative mt-5 inline-flex text-sm font-medium text-accent transition group-hover:translate-x-1"
                 >
                   Read post →
                 </Link>

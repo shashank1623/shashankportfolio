@@ -76,7 +76,7 @@ export default function Service() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate overflow-hidden bg-canvas py-20 text-ink sm:py-28 md:py-32"
+      className="relative isolate overflow-hidden bg-black py-20 text-ink sm:py-28 md:py-32"
     >
       <div className="relative z-10 mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={headerRef} className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">

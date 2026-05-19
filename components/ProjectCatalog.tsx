@@ -581,7 +581,10 @@ export default function ProjectCatalog({ showViewAll = true }: ProjectCatalogPro
     <section
       ref={sectionRef}
       id="projects"
-      className="section-flow relative overflow-hidden bg-canvas py-20 text-ink sm:py-28 md:py-32"
+      className={cn(
+        "section-flow relative overflow-hidden py-20 text-ink sm:py-28 md:py-32",
+        showViewAll ? "bg-canvas" : "bg-black"
+      )}
     >
       <div
         className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent/[0.04] blur-3xl"

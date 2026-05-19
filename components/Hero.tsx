@@ -179,7 +179,7 @@ export function Hero() {
       ref={rootRef}
       id="home"
       data-hero="boot"
-      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-canvas pb-16 pt-28 sm:pb-20 sm:pt-32 md:min-h-[110vh] md:pt-36 lg:pt-40"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-black pb-16 pt-28 sm:pb-20 sm:pt-32 md:min-h-[110vh] md:pt-36 lg:pt-40"
     >
       <div
         ref={bgRef}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type Crumb = { label: string; href?: string };
 
@@ -6,15 +7,17 @@ export function PageHeader({
   title,
   subtitle,
   crumbs,
+  className,
 }: {
   title: string;
   subtitle?: string;
   crumbs?: Crumb[];
+  className?: string;
 }) {
   const trail: Crumb[] = crumbs ?? [{ label: "Home", href: "/" }, { label: title }];
 
   return (
-    <header className="border-b border-white/[0.06] bg-canvas pb-12 pt-28 sm:pb-14 sm:pt-32 md:pb-16">
+    <header className={cn("border-b border-white/[0.06] bg-canvas pb-12 pt-28 sm:pb-14 sm:pt-32 md:pb-16", className)}>
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <nav aria-label="Breadcrumb" className="mb-5 text-sm text-muted">
           <ol className="flex flex-wrap items-center gap-2">

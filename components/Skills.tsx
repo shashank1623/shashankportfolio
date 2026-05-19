@@ -227,7 +227,7 @@ export function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative isolate overflow-hidden bg-canvas pb-20 pt-16 text-ink sm:pb-28 sm:pt-20 md:pb-32 md:pt-24"
+      className="relative isolate overflow-hidden bg-black pb-20 pt-16 text-ink sm:pb-28 sm:pt-20 md:pb-32 md:pt-24"
     >
       <div className="relative z-[1] mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={headingRef} className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">

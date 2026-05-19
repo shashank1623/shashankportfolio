@@ -112,7 +112,7 @@ export default function SkillsInterface() {
   return (
     <section
       ref={sectionRef}
-      className="section-flow bg-canvas py-20 text-ink sm:py-28 md:py-32"
+      className="section-flow bg-black py-20 text-ink sm:py-28 md:py-32"
     >
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div ref={titleRef} className="mx-auto mb-12 max-w-3xl text-center sm:mb-16 md:mb-20">
@@ -271,10 +271,10 @@ function LiveInterfaceMockup() {
               <line key={`v-${i}`} x1={300 + i * 54} y1="180" x2={300 + i * 54} y2="300" stroke="#e8a54b" strokeOpacity="0.2" />
             ))}
           </g>
-          <path d="M300 264 C338 268 352 236 386 247 C422 260 432 216 468 228 C504 240 510 266 546 216 C566 188 586 186 600 184" stroke="#e8a54b" strokeOpacity="0.22" strokeWidth="13" strokeLinecap="round" />
-          <path data-live-chart d="M300 264 C338 268 352 236 386 247 C422 260 432 216 468 228 C504 240 510 266 546 216 C566 188 586 186 600 184" stroke="#e8a54b" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="300" cy="264" r="7" fill="#e8a54b" filter="url(#softGlow)" />
-          <line x1="300" y1="264" x2="300" y2="326" stroke="#e8a54b" strokeOpacity="0.35" />
+          <path d="M300 170 C338 162 354 198 388 186 C424 172 440 222 474 210 C508 198 532 248 566 276 C582 288 592 294 600 298" stroke="#e8a54b" strokeOpacity="0.22" strokeWidth="13" strokeLinecap="round" />
+          <path data-live-chart d="M300 170 C338 162 354 198 388 186 C424 172 440 222 474 210 C508 198 532 248 566 276 C582 288 592 294 600 298" stroke="#e8a54b" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="300" cy="170" r="7" fill="#e8a54b" filter="url(#softGlow)" />
+          <line x1="300" y1="170" x2="300" y2="326" stroke="#e8a54b" strokeOpacity="0.35" />
           <line x1="300" y1="326" x2="568" y2="326" stroke="#e8a54b" strokeOpacity="0.3" />
           <line x1="300" y1="342" x2="420" y2="342" stroke="#e8a54b" strokeOpacity="0.34" strokeWidth="3" strokeLinecap="round" />
           <line x1="300" y1="356" x2="396" y2="356" stroke="#d7c2a0" strokeOpacity="0.25" strokeWidth="3" strokeLinecap="round" />

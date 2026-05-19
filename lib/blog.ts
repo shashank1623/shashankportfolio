@@ -50,6 +50,38 @@ const POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "designing-idempotent-apis-that-scale",
+    title: "Designing idempotent APIs that scale",
+    description:
+      "Practical strategies for building APIs that remain consistent under retries, failures, and load.",
+    datePublished: "2025-10-22",
+    dateModified: "2025-10-22",
+    author: "Shashank Bhardwaj",
+    keywords: ["APIs", "idempotency", "retries", "distributed systems", "reliability"],
+    sections: [
+      {
+        paragraphs: [
+          "Retries are part of every production system: browsers resend requests, queues redeliver jobs, gateways time out, and mobile clients disappear mid-flight. An idempotent API makes those repeats safe by ensuring the same logical operation produces the same durable result instead of duplicating side effects.",
+          "The simplest model is to give each operation a stable key, persist the first accepted result, and return that result for duplicate attempts. That sounds small, but it changes how you design validation, transactions, conflict handling, and observability.",
+        ],
+      },
+      {
+        heading: "Keys, state, and conflicts",
+        paragraphs: [
+          "Idempotency keys should be scoped to the actor and operation type so unrelated requests cannot collide. Store request fingerprints with the key; if a retry arrives with a different payload, reject it as a conflict rather than guessing which intent is correct.",
+          "For write-heavy APIs, keep the idempotency record in the same transactional boundary as the side effect. If the operation creates an order, payment, or workflow run, the key and resulting resource id should commit together.",
+        ],
+      },
+      {
+        heading: "Operating the pattern",
+        paragraphs: [
+          "Add expiry policies based on business risk: payment keys may live longer than analytics event keys. Expose clear response semantics so clients know whether they created a new resource, received a replayed result, or sent a conflicting request.",
+          "Good idempotency is mostly invisible to users. They notice it only when a flaky network does not double-charge them, duplicate a record, or leave the product in a half-finished state.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "rag-retrieval-that-survives-production",
     title: "RAG retrieval that survives production traffic",
     description:

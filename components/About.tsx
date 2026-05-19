@@ -75,7 +75,7 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="bg-canvas pb-20 pt-16 sm:pb-24 sm:pt-24 md:pb-28 md:pt-28"
+      className="bg-black pb-20 pt-16 sm:pb-24 sm:pt-24 md:pb-28 md:pt-28"
     >
       <div className="mx-auto w-full max-w-site px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-12 sm:gap-14 md:flex-row md:items-start md:justify-between md:gap-10 lg:gap-14">

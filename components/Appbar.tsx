@@ -82,7 +82,7 @@ export function Appbar() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-canvas/90 backdrop-blur-md"
+        className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/90 backdrop-blur-md"
         animate={{ y: navbarVisible ? 0 : -100 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -138,7 +138,7 @@ export function Appbar() {
             aria-label="Close menu"
             onClick={closeMobile}
           />
-          <div className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-border bg-canvas px-5 pb-8 pt-20 shadow-2xl">
+          <div className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-border bg-black px-5 pb-8 pt-20 shadow-2xl">
             <nav className="flex flex-col gap-1">
               {ROUTES.map((item) => (
                 <Link

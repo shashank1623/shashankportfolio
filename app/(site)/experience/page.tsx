@@ -10,18 +10,19 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <>
+    <div className="bg-black">
       <PageHeader
         title="Experience"
         subtitle="Contract full-stack and AI engineering across search, voice, 3D commerce, and SaaS."
         crumbs={[{ label: "Home", href: "/" }, { label: "Experience" }]}
+        className="bg-black"
       />
       <div className="mx-auto w-full max-w-site px-4 py-16 sm:px-8 sm:py-24 lg:px-12">
         <ol className="relative border-l border-border pl-8 sm:pl-10">
           {EXPERIENCE.map((job) => (
             <li key={`${job.company}-${job.start}`} className="mb-14 last:mb-0">
               <span
-                className="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full border-2 border-accent bg-canvas sm:-left-[11px]"
+                className="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full border-2 border-accent bg-black sm:-left-[11px]"
                 aria-hidden
               />
               <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between">
@@ -46,6 +47,6 @@ export default function ExperiencePage() {
           ))}
         </ol>
       </div>
-    </>
+    </div>
   );
 }
