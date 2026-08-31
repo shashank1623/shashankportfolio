@@ -55,7 +55,7 @@ export function HomeDossier() {
           <span>ENC · SB-1623</span>
         </div>
 
-        <div className="grid grid-cols-[6.5rem_1fr] gap-3 sm:grid-cols-[22rem_1fr] sm:gap-8">
+        <div className="grid grid-cols-[10rem_1fr] gap-3 sm:grid-cols-[22rem_1fr] sm:gap-8">
           <figure className="pt-1">
             <div className="border border-[#3b2510]/40 bg-[#efe2c0] p-1">
               <Image
@@ -64,7 +64,7 @@ export function HomeDossier() {
                 width={288}
                 height={384}
                 placeholder="blur"
-                sizes="(max-width: 640px) 104px, 352px"
+                sizes="(max-width: 640px) 160px, 352px"
                 className="block h-auto w-full"
                 priority
               />
