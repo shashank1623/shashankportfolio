@@ -1,21 +1,7 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
-import { GsapProvider } from "@/components/GsapProvider";
 import { getSiteUrl, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
-import { Analytics } from "@vercel/analytics/next"
-
-const display = Syne({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["500", "600", "700", "800"],
-});
-
-const sans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
-});
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -45,12 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <Analytics />
-      <body
-        className={`${display.variable} ${sans.variable} min-h-dvh overflow-x-hidden bg-canvas font-sans text-ink antialiased`}
-      >
-        <GsapProvider>{children}</GsapProvider>
+    <html lang="en">
+      <body>
+        {children}
+        <Analytics />
       </body>
     </html>
   );
