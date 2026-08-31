@@ -65,7 +65,7 @@ export function HomeDossier() {
                 height={384}
                 placeholder="blur"
                 sizes="(max-width: 640px) 144px, 352px"
-                className="newsprint-photo block h-auto w-full"
+                className="block h-auto w-full"
                 priority
               />
             </div>
