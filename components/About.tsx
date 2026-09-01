@@ -121,10 +121,6 @@ export function About() {
                 .
               </p>
               <p className="text-sm sm:text-base">
-                <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`} className="text-accent hover:underline">
-                  {CONTACT.phone}
-                </a>
-                {" · "}
                 <a href={`mailto:${CONTACT.email}`} className="text-accent hover:underline">
                   {CONTACT.email}
                 </a>

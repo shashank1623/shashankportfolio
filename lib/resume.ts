@@ -108,7 +108,6 @@ export const TECHNICAL_SKILLS: { category: string; items: string[] }[] = [
 
 export const CONTACT = {
   name: "Shashank Bhardwaj",
-  phone: "+91 7017543269",
   email: "shashankbhardwaj16apr@gmail.com",
   calBooking: "https://cal.com/theghost1623/book-a-call",
   github: "https://github.com/shashank1623",

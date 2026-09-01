@@ -113,8 +113,6 @@ export default function Home() {
       <section className="space-y-1">
         <p>
           <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-          {" · "}
-          <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a>
         </p>
         <p>
           <a href={CONTACT.github}>GitHub</a>{" "}
