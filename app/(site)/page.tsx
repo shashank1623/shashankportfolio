@@ -30,8 +30,7 @@ export default function Home() {
           I just ship whatever it takes. I have expertise in building
           production RAGs, scalable system design, and agentic workflows.
           Based out of north India, working with teams globally, mostly
-          remote but open to relocate anywhere on this planet — except
-          Antarctica and Pakistan.
+          remote but open to relocate anywhere on this planet.
         </p>
       </section>
 
