@@ -36,5 +36,3 @@ yarn-error.log*
 next-env.d.ts
 
 unusal-hero
-# local-only background music
-/public/audio/
