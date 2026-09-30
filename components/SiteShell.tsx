@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { SiteNav } from "./SiteNav";
+import { BackgroundMusic } from "./BackgroundMusic";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,6 +14,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         {isHome ? null : <SiteNav className="mb-10" />}
         <main>{children}</main>
       </div>
+      <BackgroundMusic />
     </div>
   );
 }
